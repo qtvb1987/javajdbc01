@@ -20,4 +20,33 @@ public class Test01 {
         }
         JDBCUtils.close(resultSet);
     }
+
+    @Test
+    public void jdbctest02() throws SQLException {
+
+        String sql="update emp set ename=? where empno=?";
+        //Connection connection = JDBCUtils.getConnection();
+        //Statement statement = connection.createStatement();
+        PreparedStatement preparedStatement = JDBCUtils.createPreparedStatement(sql);
+        preparedStatement.setString(1,"王宝");
+        preparedStatement.setString(2,"1001");
+        int result = preparedStatement.executeUpdate();
+        System.out.println("执行返回:"+result);
+        JDBCUtils.close(null);
+    }
+
+    @Test
+    public void jdbctest03() throws SQLException {
+
+        String sql="insert into emp(ename,job,hiredate,sal)values(?,?,Now(),?)";
+        //Connection connection = JDBCUtils.getConnection();
+        //Statement statement = connection.createStatement();
+        PreparedStatement preparedStatement = JDBCUtils.createPreparedStatement(sql);
+        preparedStatement.setString(1,"李人");
+        preparedStatement.setString(2,"工人");
+        preparedStatement.setDouble(3,889);
+        int result = preparedStatement.executeUpdate();
+        System.out.println("执行返回:"+result);
+        JDBCUtils.close(null);
+    }
 }
