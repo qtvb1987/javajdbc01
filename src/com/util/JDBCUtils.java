@@ -23,6 +23,7 @@ public class JDBCUtils {
     //类加载的时候，只执行一次
     static{
         try {
+
             //使用类加载器，读取配置文件
             InputStream is=JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties");
             properties.load(is);
